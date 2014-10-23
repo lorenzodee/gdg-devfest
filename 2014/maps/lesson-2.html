@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lesson 2b - Store locator with Panel</title>
+<link rel="shortcut icon" href="https://developers.google.com/_static/392148bcbc/images/favicon.ico">
+<link rel="apple-touch-icon" href="https://developers.google.com/_static/392148bcbc/images/apple-touch-icon.png">
+<style type="text/css">
+  body { font-family: sans-serif; }
+  #map-canvas, #panel { height: 500px; }
+  #map-canvas { margin-left: 27%; }
+  #panel { width: 25%; float: left; margin-right: 2%; }
+  #panel .feature-filter label { width: 130px; }
+  p.attribution, p.attribution a { color: #666; }
+</style>
+<link rel="stylesheet" href="storelocator/css/storelocator.css">
+</head>
+<body>
+<h1>Maxicare Accredited Providers (PH)</h1>
+<div id="panel"></div>
+<div id="map-canvas">
+  <div style="display: table; height: 100%; width: 100%"><div style="display: table-cell; vertical-align: middle; text-align: center">Loading...</div></div>
+</div>
+<p class="attribution">Maxicare location data <em>shamelessly</em> taken from <a href="https://www.google.com/fusiontables/data?docid=17dcSr8gdGmKdILwESwmstqQtOlGT2QtpPIK6z_Q">MAXICARE ACCREDITED PROVIDERS.csv - Google Fusion Tables</a>.</p>
+<script type="text/javascript" charset="utf-8" src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+<script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="storelocator/dist/store-locator.min.js"></script>
+<script type="text/javascript">
+/**
+ * @extends storeLocator.StaticDataFeed
+ * @constructor
+ */
+function MaxicareDataSource() {
+  $.extend(this, new storeLocator.StaticDataFeed);
+
+  var that = this;
+  $.get('maxicare-accredited-providers.csv', function(data) {
+    that.setStores(that.parse_(data));
+  });
+}
+
+/**
+ * @private
+ * @param {string} csv
+ * @return {!Array.<!storeLocator.Store>}
+ */
+MaxicareDataSource.prototype.parse_ = function(csv) {
+};
+
+
+google.maps.event.addDomListener(window, 'load', function() {
+  var map = new google.maps.Map(document.getElementById('map-canvas'), {
+    center: new google.maps.LatLng(14.5500, 121.0333),
+    zoom: 8,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+
+  var panelDiv = document.getElementById('panel');
+
+  var data = new MaxicareDataSource;
+
+  var view = new storeLocator.View(map, data, {
+    geolocation: false
+  });
+
+  new storeLocator.Panel(panelDiv, {
+    view: view
+  });
+});
+</script>
+</body>
+</html>
