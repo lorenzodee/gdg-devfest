@@ -27,8 +27,40 @@ Notice how the `initialize` function is called by listening to the `load` event 
     google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 
+---
+
 ### Lesson 1 - Adding Marker and Info Window
+
+- Use the results of the previous lesson as a starting point. Or, you can jump to [lesson-1.html](./lesson-1.html).
+- To add a marker, create a `google.maps.Marker` in the `initialize` function. Some code was added (but commented out) to add a marker. Notice how it uses the `map` object that was created in the previous exercise.
+
+
+    var dlsu = new google.maps.LatLng(14.5649213, 120.993946699);
+    // To add the marker to the map, use the 'map' property
+    var marker = new google.maps.Marker({
+        position: dlsu,
+        map: map,
+        title: 'Animo La Salle!',
+        icon: '...png'
+    });
+
+
+- To add an info window, create a `google.maps.InfoWindow` object, and use the `open` method when marker is clicked.
+
+    // To add an infowindow, use the 'open' method when marker is clicked
+    var contentString = document.getElementById('infowindow-content');
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map, marker);
+    });
+
+---
 
 ### Lesson 2 - Store locator
 
-
+- In this exercise, you'll load data (from a CSV file) and display the markers on the map.
+- This uses code from [storelocator.googlecode.com](http://storelocator.googlecode.com).
+- To get started, refer to [storelocator/examples/panel.html](storelocator/examples/panel.html).
+- For more information about the store locator, refer to [storelocator/index.html](storelocator/index.html).
