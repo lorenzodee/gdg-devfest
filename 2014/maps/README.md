@@ -73,6 +73,28 @@
 - This uses code from [storelocator.googlecode.com](http://storelocator.googlecode.com).
 - As a reference, you'll be building something like [storelocator/examples/panel.html](http://storelocator.googlecode.com/git/examples/panel.html).
 - To get started, include the `store-locator.min.js` file in your HTML page (use [lesson-2.html](lesson-2.html) as a starting point). It already includes Google Maps JavaScript API and jQuery.
+- The following code snippet is already provided in [lesson-2.html](lesson-2.html). When the window loads, the callback function creates a new instance of the `MaxicareDataSource` object (which you will create in this exercise).
+
+    <pre><code>google.maps.event.addDomListener(window, 'load', function() {
+      var map = new google.maps.Map(document.getElementById('map-canvas'), {
+        center: new google.maps.LatLng(14.5500, 121.0333),
+        zoom: 8,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+
+      var panelDiv = document.getElementById('panel');
+
+      <strong style="color: #3c8ef3">var data = new MaxicareDataSource;</strong>
+
+      var view = new storeLocator.View(map, data, {
+        geolocation: false
+      });
+
+      new storeLocator.Panel(panelDiv, {
+        view: view
+      });
+    });</code></pre>
+
 - Add a constructor for our `MaxicareDataSource` class. This class *extends* `storeLocator.StaticDataFeed` class. In the constructor, we call `setStores` to initialize the array of store objects (as needed by the `storeLocator.StaticDataFeed` class). Note that the `maxicare-accredited-providers.csv` file has been provided. We'll define the `parse_` method in the next step.
 
     ```
@@ -217,7 +239,7 @@
         var coordinates = geometryRegEx.exec(row.GEOMETRY);
 
         if (coordinates && coordinates.length >= 2) {
-          var position = new google.maps.LatLng(coordinates[2], coordinates[1]);
+          var position = new google.maps.LatLng(coordinates[...], coordinates[...]);
 
           var store = new storeLocator.Store(row.PROVIDERCODE, position, null, {
             title: row.PROVIDERNAME,
