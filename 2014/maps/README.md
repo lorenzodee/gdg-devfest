@@ -70,5 +70,65 @@ Notice how the `initialize` function is called by listening to the `load` event 
 
 - In this exercise, you'll load data (from a CSV file) and display the markers on the map.
 - This uses code from [storelocator.googlecode.com](http://storelocator.googlecode.com).
-- To get started, refer to [storelocator/examples/panel.html](storelocator/examples/panel.html).
-- For more information about the store locator, refer to [storelocator/index.html](storelocator/index.html).
+- As a reference, you'll be building something like [storelocator/examples/panel.html](http://storelocator.googlecode.com/git/examples/panel.html).
+- To get started, include the `store-locator.min.js` file in your HTML page (use [lesson-2.html](lesson-2.html) as a starting point). It already includes Google Maps JavaScript API and jQuery.
+- Add a constructor for our `MaxicareDataSource` class. This class *extends* `storeLocator.StaticDataFeed` class. In the constructor, we call `setStores` to initialize the array of store objects (as needed by the `storeLocator.StaticDataFeed` class). Note that the `maxicare-accredited-providers.csv` file has been provided. We'll define the `parse_` method in the next step.
+
+```
+function MaxicareDataSource() {
+  $.extend(this, new storeLocator.StaticDataFeed);
+
+  var that = this;
+  $.get('maxicare-accredited-providers.csv', function(data) {
+    that.setStores(that.parse_(data));
+  });
+}
+```
+
+
+
+- Add a private `parse_` method to our `MaxicareDataSource` class. It shall accept a CSV file as an input argument, and shall return an array of `storeLocator.Store` objects.
+
+```
+MaxicareDataSource.prototype.parse_ = function(csv) {
+  var stores = [];
+  return stores;
+};
+```
+
+- Split the CSV into rows (by splitting on `'\n'`). Next, we'll need to 
+
+```
+MaxicareDataSource.prototype.parse_ = function(csv) {
+  var stores = [];
+  var rows = csv.split('\n');
+  var headings = this.parseRow_(rows[0]);
+
+  return stores;
+};
+```
+
+  // <Point><coordinates>121.014420,14.558366,0.000000</coordinates></Point>
+  var geometryRegEx = /<Point><coordinates>(\d+\.\d+),(\d+\.\d+),\d+\.\d+<\/coordinates><\/Point>/;
+  for (var i = 1, row; row = rows[i]; i++) {
+    row = this.toObject_(headings, this.parseRow_(row));
+    /*
+    var features = new storeLocator.FeatureSet;
+    features.add(this.FEATURES_.getById('Wheelchair-' + row.Wheelchair));
+    features.add(this.FEATURES_.getById('Audio-' + row.Audio));
+    */
+    var coordinates = geometryRegEx.exec(row.GEOMETRY);
+
+    if (coordinates && coordinates.length >= 2) {
+      var position = new google.maps.LatLng(coordinates[2], coordinates[1]);
+
+      var store = new storeLocator.Store(row.PROVIDERCODE, position, null, {
+        title: row.PROVIDERNAME,
+        address: row.ADDRESS
+      });
+      stores.push(store);
+    }
+  }
+
+
+
