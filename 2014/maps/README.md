@@ -34,7 +34,7 @@ Notice how the `initialize` function is called by listening to the `load` event 
 - Use the results of the previous lesson as a starting point. Or, you can jump to [lesson-1.html](./lesson-1.html).
 - To add a marker, create a `google.maps.Marker` in the `initialize` function. Some code was added (but commented out) to add a marker. Notice how it uses the `map` object that was created in the previous exercise.
 
-
+```
     var dlsu = new google.maps.LatLng(14.5649213, 120.993946699);
     // To add the marker to the map, use the 'map' property
     var marker = new google.maps.Marker({
@@ -43,7 +43,7 @@ Notice how the `initialize` function is called by listening to the `load` event 
         title: 'Animo La Salle!',
         icon: '...png'
     });
-
+```
 
 - To add an info window, create a `google.maps.InfoWindow` object, and use the `open` method when marker is clicked.
 
