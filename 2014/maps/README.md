@@ -85,7 +85,9 @@ function MaxicareDataSource() {
 }
 ```
 
+    **NOTE**: To load local files (i.e. not using http://), you'll need to start your browser in a mode that allows file access to files. For Google Chrome, please follow the instructions [here](http://www.chrome-allow-file-access-from-file.com). Basically, you'll need to shutdown all running instances of Google Chrome, and then start it with a command line argument: **`--allow-file-access-from-files`**. To verify if this worked, go to `chrome://version` in the launched Chrome window and see if the it was indeed started with the said command line argument.
 
+    You can also launch the existing [storelocator/examples/panel.html](storelocator/examples/panel.html) to test and see if the locations were loaded (i.e. markers shown on the map).
 
 - Add a private `parse_` method to our `MaxicareDataSource` class. It shall accept a CSV file as an input argument, and shall return an array of `storeLocator.Store` objects.
 
