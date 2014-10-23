@@ -1,6 +1,8 @@
 # Beyond Markers and Info Windows
 
-* [Lesson 0 - Getting Set Up](Lesson 0 - Getting Set Up)
+* [Lesson 0 - Getting Set Up](#lesson-0---getting-set-up)
+* [Lesson 1 - Adding Marker and Info Window](#lesson-1---adding-marker-and-info-window)
+* [Lesson 2 - Store locator](#lesson-2---store-locator)
 
 ### Lesson 0 - Getting Set Up
 
