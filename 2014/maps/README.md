@@ -47,6 +47,7 @@ Notice how the `initialize` function is called by listening to the `load` event 
 
 - To add an info window, create a `google.maps.InfoWindow` object, and use the `open` method when marker is clicked.
 
+```
     // To add an infowindow, use the 'open' method when marker is clicked
     var contentString = document.getElementById('infowindow-content');
     var infowindow = new google.maps.InfoWindow({
@@ -55,6 +56,11 @@ Notice how the `initialize` function is called by listening to the `load` event 
     google.maps.event.addListener(marker, 'click', function() {
       infowindow.open(map, marker);
     });
+```
+
+- Load the HTML file again, and you should see somthing like this:
+
+![Screenshot of Map with Marker and Infowindow](lesson-1.png)
 
 ---
 
