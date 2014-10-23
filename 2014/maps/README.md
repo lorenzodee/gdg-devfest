@@ -155,18 +155,16 @@
 
 - For each row, we convert the array of strings into a *key-value* pair object (just like any other JavaScript object) by calling the private `toObject_` method that we will write next.
 
-    ```
-    MaxicareDataSource.prototype.parse_ = function(csv) {
+    <pre><code>MaxicareDataSource.prototype.parse_ = function(csv) {
       var stores = [];
       var rows = csv.split('\n');
       var headings = this.parseRow_(rows[0]);
 
       for (var i = 1, row; row = rows[i]; i++) {
-        row = this.toObject_(headings, this.parseRow_(row));
+        row = <strong>this.toObject_(headings, this.parseRow_(row));</strong>
       }
       return stores;
-    };
-    ```
+    };</code></pre>
 
 - Add the `toObject_` method to the `MaxicareDataSource` class. Convert the array of strings to a key-value pair object. The key names come from the header row.
 
@@ -182,9 +180,9 @@
 
 - Then we come back to the `parse_` method again, and continue processing the data rows. By now, each row is an object (key-value pairs). We use the desired properties to create a `Store` object. Here, we use the GEOMETRY column for the lat/lng coordinates. It comes in the following format:
 
-    ```
-    <Point><coordinates>121.014420,14.558366,0.000000</coordinates></Point>
-    ```
+    <pre><code>&lt;Point&gt;&lt;coordinates&gt;121.014420,14.558366,0.000000&lt;/coordinates&gt;&lt;/Point&gt;
+    &lt;Point&gt;&lt;coordinates&gt;<em>{longitude}</em>,<em>{latitude}</em>,0.000000&lt;/coordinates&gt;&lt;/Point&gt;
+    </code></pre>
 
 - Use a regular expression to parse out the latitude and longitude. Create a `google.maps.LatLng` object using the parsed coordinates.
 
