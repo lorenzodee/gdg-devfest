@@ -235,11 +235,11 @@
       var stores = [];
       . . .
       for (var i = 1, row; row = rows[i]; i++) {
-        row = this.toObject_(headings, this.parseRow_(row));
-        var coordinates = geometryRegEx.exec(row.GEOMETRY);
+        row = ...;
+        var coordinates = ...;
 
-        if (coordinates && coordinates.length >= 2) {
-          var position = new google.maps.LatLng(coordinates[...], coordinates[...]);
+        if (coordinates && ...) {
+          var position = ...;
 
           var store = new storeLocator.Store(row.PROVIDERCODE, position, null, {
             title: row.PROVIDERNAME,
