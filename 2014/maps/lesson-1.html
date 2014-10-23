@@ -29,6 +29,7 @@
     };
     var map = new google.maps.Map(document.getElementById('map-canvas'),
         mapOptions);
+    /*
     var dlsu = new google.maps.LatLng(14.5649213, 120.993946699);
     // To add the marker to the map, use the 'map' property
     var marker = new google.maps.Marker({
@@ -37,6 +38,8 @@
         title: 'Animo La Salle!',
         icon: 'http://upload.wikimedia.org/wikipedia/en/thumb/e/e3/DLSGreenArchers.png/35px-DLSGreenArchers.png'
     });
+    */
+    /*
     // To add an infowindow, use the 'open' method when marker is clicked
     var contentString = document.getElementById('infowindow-content');
     var infowindow = new google.maps.InfoWindow({
@@ -45,6 +48,7 @@
     google.maps.event.addListener(marker, 'click', function() {
       infowindow.open(map, marker);
     });
+    */
   }
   google.maps.event.addDomListener(window, 'load', initialize);
 </script>
