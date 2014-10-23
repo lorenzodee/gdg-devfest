@@ -1,5 +1,7 @@
 # Beyond Markers and Info Windows
 
+* [Lesson 0 - Getting Set Up](Lesson 0 - Getting Set Up)
+
 ### Lesson 0 - Getting Set Up
 
 - Obtain an API key by following instructions at [developers.google.com](https://developers.google.com/maps/documentation/javascript/tutorial#api_key)
