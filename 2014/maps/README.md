@@ -8,7 +8,7 @@
     <script type="text/javascript"
             src="https://maps.googleapis.com/maps/api/js?key= **API_KEY** "></script>
 
-- Uncomment the JavaScript code snippet inside [lesson-0.html](./lesson-0.html) to add a map. It's near the end of the file, before the ending </body> tag.
+- Uncomment the JavaScript code snippet inside [lesson-0.html](./lesson-0.html) to add a map. It's near the end of the file, before the ending `</body>` tag.
 - Load the HTML file and see if the map is loaded
 
 Notice how the `initialize` function is called by listening to the `load` event of the window.
