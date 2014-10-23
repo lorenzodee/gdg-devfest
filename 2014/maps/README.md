@@ -74,16 +74,16 @@ Notice how the `initialize` function is called by listening to the `load` event 
 - To get started, include the `store-locator.min.js` file in your HTML page (use [lesson-2.html](lesson-2.html) as a starting point). It already includes Google Maps JavaScript API and jQuery.
 - Add a constructor for our `MaxicareDataSource` class. This class *extends* `storeLocator.StaticDataFeed` class. In the constructor, we call `setStores` to initialize the array of store objects (as needed by the `storeLocator.StaticDataFeed` class). Note that the `maxicare-accredited-providers.csv` file has been provided. We'll define the `parse_` method in the next step.
 
-```
-function MaxicareDataSource() {
-  $.extend(this, new storeLocator.StaticDataFeed);
+    ```
+    function MaxicareDataSource() {
+      $.extend(this, new storeLocator.StaticDataFeed);
 
-  var that = this;
-  $.get('maxicare-accredited-providers.csv', function(data) {
-    that.setStores(that.parse_(data));
-  });
-}
-```
+      var that = this;
+      $.get('maxicare-accredited-providers.csv', function(data) {
+        that.setStores(that.parse_(data));
+      });
+    }
+    ```
 
     **NOTE**: To load local files (i.e. not using http://), you'll need to start your browser in a mode that allows file access to files. For Google Chrome, please follow the instructions [here](http://www.chrome-allow-file-access-from-file.com). Basically, you'll need to shutdown all running instances of Google Chrome, and then start it with a command line argument: **`--allow-file-access-from-files`**. To verify if this worked, go to `chrome://version` in the launched Chrome window and see if the it was indeed started with the said command line argument.
 
