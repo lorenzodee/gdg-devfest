@@ -5,10 +5,10 @@
 - Obtain an API key by following instructions at [developers.google.com](https://developers.google.com/maps/documentation/javascript/tutorial#api_key)
 - Use your API key (by replacing API_KEY) to load Google Maps JavaScript API in [lesson-0.html](./lesson-0.html).
 
-```
-    <script type="text/javascript"
-            src="https://maps.googleapis.com/maps/api/js?key= **API_KEY** "></script>
-```
+<pre><code>
+    &lt;script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=<strong>API_KEY</strong>"&gt;&lt;/script&gt;
+</code></pre>
 
 - Uncomment the JavaScript code snippet inside [lesson-0.html](./lesson-0.html) to add a map. It's near the end of the file, before the ending `</body>` tag.
 - Load the HTML file and see if the map is loaded
